@@ -151,21 +151,19 @@ def render_openscad(self, node, fileformat):
         return refname, outfname  # don't regenerate
     absincdir = os.path.join(self.builder.srcdir, node['incdir'])
     ensuredir(os.path.dirname(outfname))
-    ferr = open('error.log', 'w')
     with open('{infile}'.format(infile=refname), 'w') as scadfile:
         scadfile.write(node['cad'])
     try:
         cmd = generate_openscad_args(self, refname, outfname)
         p = subprocess.Popen(cmd,
                              stdout=subprocess.PIPE, stdin=subprocess.PIPE,
-                             stderr=ferr,
+                             stderr=subprocess.PIPE,
                              cwd=absincdir)
     except OSError as err:
         if err.errno != ENOENT:
             raise
         raise openscadError('openscad command %r cannot be run'
                             % self.builder.config.openscad)
-    ferr.close()
     return refname, outfname
 
 def _get_png_tag(self, fnames, node):
