@@ -53,10 +53,12 @@ class CadDirective(Directive):
     Example::
 
         .. cad::
-           :alt: Alice and Bob
+            :alt: Cube and sphere
 
-           Alice -> Bob: Hello
-           Alice <- Bob: Hi
+            difference() {
+                cube(12, center=true);
+                sphere(8);
+            }
     """
     has_content = True
     required_arguments = 0
