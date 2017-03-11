@@ -65,10 +65,8 @@ class CadDirective(Directive):
     optional_arguments = 1
     option_spec = {'alt': directives.unchanged,
                    'caption': directives.unchanged,
-                   'height': directives.length_or_unitless,
-                   'width': directives.length_or_percentage_or_unitless,
-                   'scale': directives.percentage,
                    'align': align,
+                   'camera': directives.unchanged,
                    }
 
     def run(self):
@@ -139,12 +137,16 @@ _ARGS_BY_FILEFORMAT = {
     'svg': '-tsvg'.split(),
     }
 
-def generate_openscad_args(self, refname, outfname):
+def generate_openscad_args(self, node, refname, outfname):
     if isinstance(self.builder.config.openscad, (tuple, list)):
         args = list(self.builder.config.openscad)
     else:
         args = shlex.split(self.builder.config.openscad)
-    args.extend('-o {outfile} {infile}'.format(outfile=outfname, infile=refname).split())
+    cmd = ''
+    if 'camera' in node:
+        cmd = '{options} --camera {cam}'.format(options=cmd, cam=node['camera'])
+    args.extend('{options} -o {outfile} {infile}'.format(options=cmd, outfile=outfname, infile=refname).split())
+    print(args)
     return args
 
 def render_openscad(self, node, fileformat):
@@ -156,7 +158,7 @@ def render_openscad(self, node, fileformat):
     with open('{infile}'.format(infile=refname), 'w') as scadfile:
         scadfile.write(node['cad'])
     try:
-        cmd = generate_openscad_args(self, refname, outfname)
+        cmd = generate_openscad_args(self, node, refname, outfname)
         p = subprocess.Popen(cmd,
                              stdout=subprocess.PIPE, stdin=subprocess.PIPE,
                              stderr=subprocess.PIPE,
