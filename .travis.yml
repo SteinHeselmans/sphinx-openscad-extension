@@ -29,6 +29,8 @@ before_install:
 
 install:
   - pip install tox
+  - sudo add-apt-repository ppa:openscad/releases
+  - sudo apt-get update
   - sudo apt-get install openscad
   - virtualenv --version
   - easy_install --version
