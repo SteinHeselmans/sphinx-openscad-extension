@@ -29,10 +29,12 @@ before_install:
 
 install:
   - pip install tox
+  - apt-get install openscad
   - virtualenv --version
   - easy_install --version
   - pip --version
   - tox --version
+  - openscad --version
 
 script:
   - tox -v
