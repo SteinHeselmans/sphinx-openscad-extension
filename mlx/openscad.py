@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-    sphinxcontrib.openscad
-    ~~~~~~~~~~~~~~~~~~~~~~
+    mlx.openscad
+    ~~~~~~~~~~~~
 
     Embed openscad diagrams on your documentation.
 
-    :copyright: Copyright 2016 by Stein Heselmans <stein.heselmans@gmail.com>.
-    :license: MIT, see LICENSE for details.
 """
 
 import codecs

@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 project_url = 'https://github.com/steinheselmans/sphinx-openscad-extension'
-version = '0.1.0'
+version = '0.2.0'
 
 requires = ['Sphinx>=0.6']
 
@@ -12,7 +12,7 @@ setup(
     version=version,
     url=project_url,
     download_url=project_url + '/tarball/' + version,
-    license='MIT license',
+    license='Apache2 license',
     author='Stein Heselmans',
     author_email='teh@melexis.com',
     description='Sphinx openscad extension',
@@ -24,7 +24,7 @@ setup(
         'Environment :: Web Environment',
         'Framework :: Sphinx :: Extension',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: Apache2 License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
