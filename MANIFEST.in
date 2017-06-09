@@ -1,0 +1,14 @@
+# Include the readme file
+include README.rst
+
+# added by check_manifest.py
+include LICENSE
+include NOTICE
+include tox.ini
+recursive-include example *.bat
+recursive-include example *.py
+recursive-include example *.rst
+recursive-include example Makefile
+recursive-include tests *.py
+recursive-include tests *.rst
+recursive-include tests *.txt
